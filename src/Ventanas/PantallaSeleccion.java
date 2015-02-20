@@ -4,6 +4,15 @@
  */
 package Ventanas;
 
+import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JColorChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+
 /**
  *
  * @author Julio
@@ -15,6 +24,7 @@ public class PantallaSeleccion extends javax.swing.JFrame {
      */
     public PantallaSeleccion() {
         initComponents();
+        iniciar_componentes();
     }
 
     /**
@@ -34,6 +44,11 @@ public class PantallaSeleccion extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Jugador Plantas");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Jugador Zombies");
         jButton2.setActionCommand("");
@@ -81,6 +96,11 @@ public class PantallaSeleccion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        vjugadores.setVisible(true);
+        vjugadores.setTitle("Plantas");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -114,6 +134,45 @@ public class PantallaSeleccion extends javax.swing.JFrame {
                 new PantallaSeleccion().setVisible(true);
             }
         });
+    }
+    //ventanaJugadorPlantas
+    JFrame vjugadores = new JFrame();
+    JButton agregar = new JButton();
+    JButton finalizar = new JButton();
+    JLabel jlnombre = new JLabel("Nombre:");
+    JLabel jlcantidad = new JLabel("Cantidad");
+    JTextField jtnombre= new JTextField();
+    JTextField jtcantidad= new JTextField();
+    JLabel Fondo2 = new JLabel();
+    public void iniciar_componentes(){
+        agregar.setText("Agregar mas campos");
+        finalizar.setText("Finalizar");
+        //Fondo2.setIcon(new ImageIcon(getClass().getResource("/imagenes/fondo2.jpg")));
+    	vjugadores.getContentPane().add(agregar);
+        vjugadores.getContentPane().add(finalizar);
+    	vjugadores.getContentPane().add(jlnombre);
+    	vjugadores.getContentPane().add(jlcantidad);
+    	vjugadores.getContentPane().add(jtnombre);
+    	vjugadores.getContentPane().add(jtcantidad); 	
+        vjugadores.getContentPane().add(Fondo2);
+        agregar.setOpaque(true);
+        finalizar.setOpaque(true);
+        jlnombre.setOpaque(true);
+        jlcantidad.setOpaque(true);
+        jlnombre.setBackground(Color.white);
+        jlcantidad.setBackground(Color.white); 
+    	agregar.setBounds(50,420,175,40);
+        finalizar.setBounds(250,420,175,40);
+    	jlnombre.setBounds(5,5,150,30);
+    	jtnombre.setBounds(5,55,150,20);
+    	jlcantidad.setBounds(5,80,150,30);
+    	jtcantidad.setBounds(5,121,150,20);
+        Fondo2.setBounds(0,0,500,500);
+    	vjugadores.setResizable(false);
+    	vjugadores.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    	vjugadores.setLayout(null);
+    	vjugadores.setVisible(false);   
+    	vjugadores.setSize(500,500);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
