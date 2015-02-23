@@ -14,7 +14,7 @@ public class NodoPlanta {
     
      public NodoPlanta(){
         nombre=null;
-        nombreGraphviz="nodoplanta";
+        nombreGraphviz="planta";
     }
      
      public String getNodoGraphviz(){

@@ -15,7 +15,7 @@ public class NodoNombre {
     
      public NodoNombre(String nom){
         cantidad=null;
-        nombreGraphviz="nodo"+nom;
+        nombreGraphviz="nombre:"+nom;
         nombre=nom;
     }
      

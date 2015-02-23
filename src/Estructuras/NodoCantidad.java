@@ -15,7 +15,7 @@ public class NodoCantidad {
     
      public NodoCantidad(String cant){
         extra=null;
-        nombreGraphviz="nodo"+cant;
+        nombreGraphviz="cantidad:"+cant;
         cantidad=cant;
     }
      

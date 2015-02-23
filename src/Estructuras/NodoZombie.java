@@ -14,7 +14,7 @@ public class NodoZombie {
     
      public NodoZombie(){
         nombre=null;
-        nombreGraphviz="nodozombie";
+        nombreGraphviz="zombie";
     }
      
      public String getNodoGraphviz(){

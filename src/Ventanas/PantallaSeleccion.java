@@ -5,6 +5,8 @@
 package Ventanas;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
@@ -12,17 +14,94 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+import Estructuras.*;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 /**
  *
  * @author Julio
  */
 public class PantallaSeleccion extends javax.swing.JFrame {
-
+    //ventanaJugadorPlantas
+    JFrame vjugadores = new JFrame();
+    JButton agregar = new JButton();
+    JButton finalizar = new JButton();
+    JLabel jlnombre = new JLabel("Nombre:");
+    JLabel jlcantidad = new JLabel("Cantidad");
+    JLabel jlextra = new JLabel("Dato extra");
+    JTextField jtnombre= new JTextField();
+    JTextField jtcantidad= new JTextField();
+    JTextField jtextra=new JTextField();
+    JLabel Fondo2 = new JLabel();
+    //variables
     private boolean plantaZombie=false;
+    private boolean camposAgregados=false;
+    //estructuras
+    NodoCabecera usuario = new NodoCabecera();
     public PantallaSeleccion() {
         initComponents();
         iniciar_componentes();
+        
+         //acciones para el boton de la ventana de jugadores
+    agregar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e){
+            	//acciones
+              if (camposAgregados==false){
+                  if (jtnombre.getText().isEmpty()==false && jtcantidad.getText().isEmpty()==false){
+                        jlextra.setVisible(true);
+                        jtextra.setVisible(true);
+                        if (plantaZombie)
+                            usuario.CrearPlanta(jtnombre.getText(), jtcantidad.getText());
+                        else
+                            usuario.CrearZombie(jtnombre.getText(), jtcantidad.getText());
+                  }
+                  else{
+                      //mensaje de error
+                  }
+              } 
+              else{
+                  if (jtextra.getText().isEmpty()==false){
+                      if (plantaZombie)
+                            usuario.AdicionalesPlanta(jtextra.getText());
+                        else
+                            usuario.AdicionalesZombie(jtextra.getText());
+                  }
+              }
+            }
+        });
+     finalizar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e){
+            	//acciones
+              if (camposAgregados==false){
+                  if (jtnombre.getText().isEmpty()==false && jtcantidad.getText().isEmpty()==false){
+                        jlextra.setVisible(true);
+                        jtextra.setVisible(true);
+                        if (plantaZombie)
+                            usuario.CrearPlanta(jtnombre.getText(), jtcantidad.getText());
+                        else
+                            usuario.CrearZombie(jtnombre.getText(), jtcantidad.getText());
+                        vjugadores.dispose();
+                  }
+                  else{
+                      //mensaje de error
+                  }
+              } 
+              else{
+                  if (jtextra.getText().isEmpty()==false){
+                      if (plantaZombie)
+                            usuario.AdicionalesPlanta(jtextra.getText());
+                        else
+                            usuario.AdicionalesZombie(jtextra.getText());
+                  }
+                  vjugadores.dispose();
+              }
+            }
+                        
+        });
+        
     }
 
    
@@ -34,6 +113,7 @@ public class PantallaSeleccion extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,6 +126,11 @@ public class PantallaSeleccion extends javax.swing.JFrame {
 
         jButton2.setText("Jugador Zombies");
         jButton2.setActionCommand("");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Comenzar Juego");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -56,17 +141,25 @@ public class PantallaSeleccion extends javax.swing.JFrame {
 
         jButton4.setText("Eliminar Datos");
 
+        jButton5.setText("Dibujar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -79,7 +172,9 @@ public class PantallaSeleccion extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -87,14 +182,71 @@ public class PantallaSeleccion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+         
+      
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.iniciar_componentes();
         vjugadores.setVisible(true);
         vjugadores.setTitle("Plantas");
         plantaZombie=true;
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        String texto="digraph g {\n node [shape = record,height=.1];\n"+usuario.Mostrar()+"}";
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        try
+        {
+            fichero = new FileWriter("C:\\Archivos\\grafoAgencias.txt");
+            pw = new PrintWriter(fichero);
+                pw.println(texto);
+ 
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+           try {
+           // Nuevamente aprovechamos el finally para 
+           // asegurarnos que se cierra el fichero.
+           if (null != fichero)
+              fichero.close();
+           } catch (Exception e2) {
+              e2.printStackTrace();
+           }
+        }
+        try{
+            String dotPath ="C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";      
+            String fileInputPath = "C:\\Archivos\\grafoAgencias.txt";
+            String fileOutputPath = "C:\\Archivos\\grafoAgencias.jpg";
+      
+            String tParam = "-Tjpg";
+            String tOParam = "-o";
+        
+            String[] cmd = new String[5];
+            cmd[0] = dotPath;
+            cmd[1] = tParam;
+            cmd[2] = fileInputPath;
+            cmd[3] = tOParam;
+            cmd[4] = fileOutputPath;
+                  
+      Runtime rt = Runtime.getRuntime();
+      
+      rt.exec( cmd );
+      
+      
+      
+        }catch (Exception e) {
+            e.printStackTrace();
+        } 
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.iniciar_componentes();
+        vjugadores.setVisible(true);
+        vjugadores.setTitle("Zombies");
+        plantaZombie=false;
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,16 +281,10 @@ public class PantallaSeleccion extends javax.swing.JFrame {
                 new PantallaSeleccion().setVisible(true);
             }
         });
+        
     }
-    //ventanaJugadorPlantas
-    JFrame vjugadores = new JFrame();
-    JButton agregar = new JButton();
-    JButton finalizar = new JButton();
-    JLabel jlnombre = new JLabel("Nombre:");
-    JLabel jlcantidad = new JLabel("Cantidad");
-    JTextField jtnombre= new JTextField();
-    JTextField jtcantidad= new JTextField();
-    JLabel Fondo2 = new JLabel();
+   
+    
     public void iniciar_componentes(){
         agregar.setText("Agregar mas campos");
         finalizar.setText("Finalizar");
@@ -174,5 +320,6 @@ public class PantallaSeleccion extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     // End of variables declaration//GEN-END:variables
 }

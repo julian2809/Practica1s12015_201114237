@@ -15,7 +15,7 @@ public class NodoExtra {
     
      public NodoExtra(String info){
         extra=null;
-        nombreGraphviz="nodo"+info;
+        nombreGraphviz="extra:"+info;
         dato=info;
     }
      
