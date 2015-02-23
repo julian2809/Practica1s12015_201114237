@@ -35,4 +35,32 @@ public class NodoCabecera {
     }
     return texto;
     }
+     
+     public void CrearPlanta(String nombre, String cantidad){
+         NodoPlanta nuevo = new NodoPlanta();
+         plantas=nuevo;
+         NodoNombre nuevoNombre=new NodoNombre(nombre);
+         plantas.nombre=nuevoNombre;
+         NodoCantidad nuevaCantidad=new NodoCantidad(cantidad);
+         plantas.nombre.cantidad=nuevaCantidad;
+     }
+     
+     public void AdicionalesPlanta(String adicional){
+         NodoExtra nuevo= new NodoExtra(adicional);
+         plantas.nombre.cantidad.extra=nuevo;
+     }
+     
+     public void CrearZombie(String nombre,String cantidad){
+         NodoZombie nuevo = new NodoZombie();
+         zombies=nuevo;
+         NodoNombre nuevoNombre=new NodoNombre(nombre);
+         zombies.nombre=nuevoNombre;
+         NodoCantidad nuevaCantidad=new NodoCantidad(cantidad);
+         zombies.nombre.cantidad=nuevaCantidad;
+     }
+     
+     public void AdicionalesZombie(String adicional){
+         NodoExtra nuevo= new NodoExtra(adicional);
+         zombies.nombre.cantidad.extra=nuevo;
+     }
 }
