@@ -29,6 +29,7 @@ public class ListaPlantas {
                     bandera=bandera.siguiente;
                 }
              bandera.siguiente=planta;
+             planta.anterior=bandera;
          }
         else{
             inicio=planta;
@@ -50,13 +51,20 @@ public class ListaPlantas {
     public void Eliminar(String nombre){
         if (!estaVacio()){
             NodoListaPlanta tmp=inicio;
-            while (tmp.siguiente!=null){
-                if (tmp.siguiente.nombre.equals(nombre)){
-                    tmp.siguiente=null;
-                    break;
+            while (tmp.siguiente!=null && tmp.nombre.equals(nombre)==false){
+                    tmp.siguiente=tmp.siguiente.siguiente;
+            } 
+            if (tmp.nombre.equals(nombre)){
+                if (tmp==inicio){
+                    inicio=tmp.siguiente;
                 }
-                else
-                    tmp=tmp.siguiente;
+                else if (tmp.siguiente==null){
+                    tmp.anterior.siguiente=null;
+                }
+                else{
+                    tmp.anterior.siguiente=tmp.siguiente;
+                    tmp.siguiente.anterior=tmp.anterior;
+                }
             }
         }
     }
@@ -65,14 +73,22 @@ public class ListaPlantas {
         NodoListaPlanta nuevo =new NodoListaPlanta(nombrenuevo,defensa,ataque,imagen);
         if (!estaVacio()){
             NodoListaPlanta tmp=inicio;
-            while (tmp.siguiente!=null){
-                if (tmp.siguiente.nombre.equals(nombre)){
-                    nuevo.siguiente=tmp.siguiente.siguiente;
-                    tmp.siguiente=nuevo;
-                    break;
+            while (tmp.siguiente!=null && tmp.nombre.equals(nombre)==false){
+                    tmp.siguiente=tmp.siguiente.siguiente;
+            } 
+            if (tmp.nombre.equals(nombre)){
+                if (tmp==inicio){
+                    inicio=nuevo;
                 }
-                else
-                    tmp=tmp.siguiente;
+                else if (tmp.siguiente==null){
+                    tmp.anterior.siguiente=nuevo;
+                }
+                else{
+                    tmp.anterior.siguiente=nuevo;
+                    tmp.siguiente.anterior=nuevo;
+                    nuevo.siguiente=tmp.siguiente;
+                    nuevo.anterior=tmp.anterior;
+                }
             }
         }
     }

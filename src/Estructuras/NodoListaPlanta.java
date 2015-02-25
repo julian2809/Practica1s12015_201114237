@@ -14,10 +14,12 @@ public class NodoListaPlanta {
     String ataque;
     String imagen;
     public NodoListaPlanta siguiente;
+    public NodoListaPlanta anterior;
     String nombreGraphviz;
     
      public NodoListaPlanta(String nom,String pts,String atk, String ima){
         siguiente=null;
+        anterior=null;
         nombreGraphviz="nombre:"+nom;
         nombre=nom;
         puntos=pts;
