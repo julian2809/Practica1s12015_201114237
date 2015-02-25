@@ -89,6 +89,7 @@ public class PantallaSeleccion extends javax.swing.JFrame {
                         jtnombre.setText("");
                         jtcantidad.setText("");
                         jtextra.setText("");
+                        Dibujar();
                   }
                   else{
                       //mensaje de error
@@ -106,6 +107,7 @@ public class PantallaSeleccion extends javax.swing.JFrame {
                   jtnombre.setText("");
                   jtcantidad.setText("");
                   jtextra.setText("");
+                  Dibujar();
               }
             }
                         
@@ -122,7 +124,6 @@ public class PantallaSeleccion extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -150,13 +151,6 @@ public class PantallaSeleccion extends javax.swing.JFrame {
 
         jButton4.setText("Eliminar Datos");
 
-        jButton5.setText("Dibujar");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -164,7 +158,6 @@ public class PantallaSeleccion extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -182,9 +175,7 @@ public class PantallaSeleccion extends javax.swing.JFrame {
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -208,54 +199,6 @@ public class PantallaSeleccion extends javax.swing.JFrame {
         plantaZombie=true;
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        String texto="digraph g {\n node [shape = record,height=.1];\n"+usuario.Mostrar()+"}";
-        FileWriter fichero = null;
-        PrintWriter pw = null;
-        try
-        {
-            fichero = new FileWriter("C:\\Archivos\\grafoAgencias.txt");
-            pw = new PrintWriter(fichero);
-                pw.println(texto);
- 
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-           try {
-           // Nuevamente aprovechamos el finally para 
-           // asegurarnos que se cierra el fichero.
-           if (null != fichero)
-              fichero.close();
-           } catch (Exception e2) {
-              e2.printStackTrace();
-           }
-        }
-        try{
-            String dotPath ="C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";      
-            String fileInputPath = "C:\\Archivos\\grafoAgencias.txt";
-            String fileOutputPath = "C:\\Archivos\\grafoAgencias.jpg";
-      
-            String tParam = "-Tjpg";
-            String tOParam = "-o";
-        
-            String[] cmd = new String[5];
-            cmd[0] = dotPath;
-            cmd[1] = tParam;
-            cmd[2] = fileInputPath;
-            cmd[3] = tOParam;
-            cmd[4] = fileOutputPath;
-                  
-      Runtime rt = Runtime.getRuntime();
-      
-      rt.exec( cmd );
-      
-      
-      
-        }catch (Exception e) {
-            e.printStackTrace();
-        } 
-    }//GEN-LAST:event_jButton5ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.iniciar_componentes();
         vjugadores.setVisible(true);
@@ -263,9 +206,51 @@ public class PantallaSeleccion extends javax.swing.JFrame {
         plantaZombie=false;
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    public void Dibujar(){
+        String texto="digraph g {\n node [shape = record,height=.1];\n"+usuario.Mostrar()+"}";
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        try
+        {
+            fichero = new FileWriter("C:\\Archivos\\grafoUsuario.txt");
+            pw = new PrintWriter(fichero);
+            pw.println(texto);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                // Nuevamente aprovechamos el finally para
+                // asegurarnos que se cierra el fichero.
+                if (null != fichero)
+                fichero.close();
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        try{
+            String dotPath ="C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
+            String fileInputPath = "C:\\Archivos\\grafoUsuario.txt";
+            String fileOutputPath = "C:\\Archivos\\grafoUsuario.jpg";
+
+            String tParam = "-Tjpg";
+            String tOParam = "-o";
+
+            String[] cmd = new String[5];
+            cmd[0] = dotPath;
+            cmd[1] = tParam;
+            cmd[2] = fileInputPath;
+            cmd[3] = tOParam;
+            cmd[4] = fileOutputPath;
+
+            Runtime rt = Runtime.getRuntime();
+
+            rt.exec( cmd );
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -343,6 +328,5 @@ public class PantallaSeleccion extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     // End of variables declaration//GEN-END:variables
 }

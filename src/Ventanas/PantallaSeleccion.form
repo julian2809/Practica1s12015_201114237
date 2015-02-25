@@ -26,7 +26,6 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jButton5" max="32767" attributes="0"/>
                   <Component id="jButton3" alignment="1" pref="464" max="32767" attributes="0"/>
                   <Component id="jButton2" alignment="1" max="32767" attributes="0"/>
                   <Component id="jButton1" alignment="1" max="32767" attributes="0"/>
@@ -47,9 +46,7 @@
               <Component id="jButton3" min="-2" pref="52" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButton4" min="-2" pref="55" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jButton5" pref="50" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -84,14 +81,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Eliminar Datos"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButton5">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Dibujar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -49,8 +49,6 @@ public class CreacionPlantas extends javax.swing.JFrame {
         jtvida = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jcataque = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
-        jLabel4 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -85,11 +83,12 @@ public class CreacionPlantas extends javax.swing.JFrame {
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel4.setText("Lista existentes");
-
         jButton3.setText("Finalizar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,14 +111,11 @@ public class CreacionPlantas extends javax.swing.JFrame {
                             .addComponent(jtnombre)
                             .addComponent(jcataque, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jtvida))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                         .addComponent(jButton3)))
                 .addContainerGap())
         );
@@ -132,9 +128,7 @@ public class CreacionPlantas extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jcataque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel3))
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,10 +172,19 @@ public class CreacionPlantas extends javax.swing.JFrame {
     }//GEN-LAST:event_jcataqueActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        NodoListaPlanta nueva = new NodoListaPlanta(jtnombre.getText(),jtvida.getText(),jcataque.getSelectedItem().toString(),path);
-        plantas.Insertar(nueva);
-        Dibujar();
+        if (jtnombre.getText().isEmpty()==false && jtvida.getText().isEmpty()==false &&path.isEmpty()==false)
+        {
+            NodoListaPlanta nueva = new NodoListaPlanta(jtnombre.getText(),jtvida.getText(),jcataque.getSelectedItem().toString(),path);
+            plantas.Insertar(nueva);
+            Dibujar();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        CreacionZombies vzombies=new CreacionZombies();
+        vzombies.show();
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
     public void Dibujar(){
          String texto="digraph g {\n node [shape = record,height=.1];\n"+plantas.Mostrar()+"}";
         FileWriter fichero = null;
@@ -265,11 +268,9 @@ public class CreacionPlantas extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JComboBox jcataque;
     private javax.swing.JTextField jtnombre;
     private javax.swing.JTextField jtvida;
