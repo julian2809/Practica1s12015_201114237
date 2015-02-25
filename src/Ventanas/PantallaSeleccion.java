@@ -52,6 +52,7 @@ public class PantallaSeleccion extends javax.swing.JFrame {
                   if (jtnombre.getText().isEmpty()==false && jtcantidad.getText().isEmpty()==false){
                         jlextra.setVisible(true);
                         jtextra.setVisible(true);
+                        camposAgregados=true;
                         if (plantaZombie)
                             usuario.CrearPlanta(jtnombre.getText(), jtcantidad.getText());
                         else
@@ -67,6 +68,7 @@ public class PantallaSeleccion extends javax.swing.JFrame {
                             usuario.AdicionalesPlanta(jtextra.getText());
                         else
                             usuario.AdicionalesZombie(jtextra.getText());
+                      jtextra.setText("");
                   }
               }
             }
@@ -84,6 +86,9 @@ public class PantallaSeleccion extends javax.swing.JFrame {
                         else
                             usuario.CrearZombie(jtnombre.getText(), jtcantidad.getText());
                         vjugadores.dispose();
+                        jtnombre.setText("");
+                        jtcantidad.setText("");
+                        jtextra.setText("");
                   }
                   else{
                       //mensaje de error
@@ -97,6 +102,10 @@ public class PantallaSeleccion extends javax.swing.JFrame {
                             usuario.AdicionalesZombie(jtextra.getText());
                   }
                   vjugadores.dispose();
+                  camposAgregados=false;
+                  jtnombre.setText("");
+                  jtcantidad.setText("");
+                  jtextra.setText("");
               }
             }
                         
@@ -182,12 +191,18 @@ public class PantallaSeleccion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-         
-      
+  
+        if (usuario.plantas!=null && usuario.zombies!=null){
+            CreacionPlantas vplantas = new CreacionPlantas();
+            vplantas.show();
+        }
+        else{
+            //mensaje error
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.iniciar_componentes();
+        //this.iniciar_componentes();
         vjugadores.setVisible(true);
         vjugadores.setTitle("Plantas");
         plantaZombie=true;
@@ -296,18 +311,26 @@ public class PantallaSeleccion extends javax.swing.JFrame {
     	vjugadores.getContentPane().add(jtnombre);
     	vjugadores.getContentPane().add(jtcantidad); 	
         vjugadores.getContentPane().add(Fondo2);
+        vjugadores.getContentPane().add(jlextra);
+        vjugadores.getContentPane().add(jtextra);
         agregar.setOpaque(true);
         finalizar.setOpaque(true);
         jlnombre.setOpaque(true);
         jlcantidad.setOpaque(true);
+        jlextra.setOpaque(true);
         jlnombre.setBackground(Color.white);
-        jlcantidad.setBackground(Color.white); 
+        jlcantidad.setBackground(Color.white);
+        jlextra.setBackground(Color.white);
     	agregar.setBounds(50,420,175,40);
         finalizar.setBounds(250,420,175,40);
     	jlnombre.setBounds(5,5,150,30);
     	jtnombre.setBounds(5,55,150,20);
     	jlcantidad.setBounds(5,80,150,30);
     	jtcantidad.setBounds(5,121,150,20);
+        jlextra.setBounds(5,150,150,30);
+        jtextra.setBounds(5,190,150,20);
+        jtextra.setVisible(false);
+        jlextra.setVisible(false);
         Fondo2.setBounds(0,0,500,500);
     	vjugadores.setResizable(false);
     	vjugadores.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);

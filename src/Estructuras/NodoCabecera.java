@@ -20,11 +20,11 @@ public class NodoCabecera {
     }
      
      public String getNodoGraphviz(){
-        return nombreGraphviz+"[label = \"<f0>|<f1>\"];\n";
+        return nombreGraphviz+";\n";
     }
      
      public String Mostrar(){
-    String texto=this.getNodoGraphviz();
+    String texto="";
     if (this.plantas!=null){
         texto=texto+"\""+this.nombreGraphviz+"\":f0 -> \""+this.plantas.nombreGraphviz+"\":f0;\n";
         texto=texto+this.plantas.Mostrar();
@@ -47,7 +47,7 @@ public class NodoCabecera {
      
      public void AdicionalesPlanta(String adicional){
          NodoExtra nuevo= new NodoExtra(adicional);
-         plantas.nombre.cantidad.extra=nuevo;
+         plantas.nombre.cantidad.AgregarExtra(nuevo);
      }
      
      public void CrearZombie(String nombre,String cantidad){
@@ -61,6 +61,6 @@ public class NodoCabecera {
      
      public void AdicionalesZombie(String adicional){
          NodoExtra nuevo= new NodoExtra(adicional);
-         zombies.nombre.cantidad.extra=nuevo;
+         zombies.nombre.cantidad.AgregarExtra(nuevo);
      }
 }

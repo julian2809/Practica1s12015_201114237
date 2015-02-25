@@ -22,7 +22,7 @@ public class NodoPlanta {
     }
      
      public String Mostrar(){
-    String texto=this.getNodoGraphviz();
+    String texto="";
     if (this.nombre!=null){
         texto=texto+"\""+this.nombreGraphviz+"\" -> \""+this.nombre.nombreGraphviz+"\";\n";
         texto=texto+this.nombre.Mostrar();

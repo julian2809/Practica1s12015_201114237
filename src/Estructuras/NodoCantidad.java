@@ -23,8 +23,20 @@ public class NodoCantidad {
         return nombreGraphviz+";\n";
     }
      
+     public void AgregarExtra(NodoExtra info){
+         if (extra==null)
+             extra=info;
+         else{
+             NodoExtra bandera=extra;
+             while (bandera.extra!=null){
+                 bandera=bandera.extra;
+             }
+             bandera.extra=info;
+         }
+     }
+     
      public String Mostrar(){
-    String texto=this.getNodoGraphviz();
+    String texto="";
     if (this.extra!=null){
         texto=texto+"\""+this.nombreGraphviz+"\" -> \""+this.extra.nombreGraphviz+"\";\n";
         texto=texto+this.extra.Mostrar();

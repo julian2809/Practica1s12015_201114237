@@ -24,7 +24,7 @@ public class NodoNombre {
     }
      
      public String Mostrar(){
-    String texto=this.getNodoGraphviz();
+    String texto="";
     if (this.cantidad!=null){
         texto=texto+"\""+this.nombreGraphviz+"\" -> \""+this.cantidad.nombreGraphviz+"\";\n";
         texto=texto+this.cantidad.Mostrar();

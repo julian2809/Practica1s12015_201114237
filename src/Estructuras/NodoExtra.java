@@ -24,7 +24,7 @@ public class NodoExtra {
     }
      
      public String Mostrar(){
-    String texto=this.getNodoGraphviz();
+    String texto="";
     if (this.extra!=null){
         texto=texto+"\""+this.nombreGraphviz+"\" -> \""+this.extra.nombreGraphviz+"\";\n";
         texto=texto+this.extra.Mostrar();
