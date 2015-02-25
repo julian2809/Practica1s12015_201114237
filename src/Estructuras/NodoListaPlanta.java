@@ -20,7 +20,7 @@ public class NodoListaPlanta {
      public NodoListaPlanta(String nom,String pts,String atk, String ima){
         siguiente=null;
         anterior=null;
-        nombreGraphviz="nombre:"+nom;
+        nombreGraphviz="nombre:"+nom+"\n imagen:"+ima+"\n ataque:"+atk+"\n vida:"+pts;
         nombre=nom;
         puntos=pts;
         ataque=atk;
